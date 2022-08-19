@@ -7,7 +7,7 @@ export const routes: Array<RouteRecordRaw> = [
   {
     path:'/',
     name:'Layout',
-    redirect:'/l7',
+    redirect:'/babylon',
     component:()=>import(/* webpackChunkName:"layout" */ '@/layout/index.vue'),
     meta:{title:'首页'},
     children:[...staticModules]

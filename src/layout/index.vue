@@ -12,7 +12,7 @@
               <template #title>{{ menu.name }}</template>
               <el-menu-item v-for="subMenu in menu.child" :key="subMenu.id" :index="subMenu.id" @click="onMenuItemClick(subMenu.path,subMenu.id)">{{ subMenu.name }}</el-menu-item>
             </el-sub-menu>
-            <el-menu-item v-else :index="menu.id" @click="onMenuItemClick(menu.path,menu.id)">{{ menu.name }}</el-menu-item>
+            <el-menu-item v-else :index="menu.id" @click="onMenuItemClick(menu.path || '',menu.id)">{{ menu.name }}</el-menu-item>
           </template>
         </el-menu>
       </div>
@@ -24,68 +24,82 @@
 </template>
 
 <script lang="ts" setup>
-import {reactive} from 'vue'
-import {useRouter} from 'vue-router'
+import { reactive } from 'vue'
+import { useRouter } from 'vue-router'
 
 const router = useRouter()
 
 const state = reactive({
-  menuList:[
-    {id:'1',name:'L7',path:'/7',child:[
-        {id:'101',name:'demo',path:'/l7/demo'},
-        {id:'102',name:'building',path:'/l7/building'}
-      ]
+  menuList: [
+    {
+      id: '3',
+      name: 'Babylon.js',
+      path: '/babylon',
+      child: [
+        { id: '301', name: 'start', path: '/babylon/start' },
+        { id: '302', name: 'village', path: '/babylon/village' },
+      ],
     },
-    {id:'2',name:'Deck.GL'}
+    {
+      id: '1',
+      name: 'L7',
+      path: '/7',
+      child: [
+        { id: '101', name: 'demo', path: '/l7/demo' },
+        { id: '102', name: 'building', path: '/l7/building' },
+      ],
+    },
+    { id: '2', name: 'Deck.GL' },
   ],
-  activeIndex:'101'
+  activeIndex: '301',
 })
 
-const handleOpen = (key:string,keyPath:string[])=>{
-  console.log(key,keyPath)
+const handleOpen = (key: string, keyPath: string[]) => {
+  console.log(key, keyPath)
 }
 
-const handleClose = (key:string,keyPath:string[])=>{
-  console.log(key,keyPath)
+const handleClose = (key: string, keyPath: string[]) => {
+  console.log(key, keyPath)
 }
 
-const onMenuItemClick = (path:string,key:string) => {
+const onMenuItemClick = (path: string, key: string) => {
   router.push(path)
   state.activeIndex = key
 }
 </script>
 
 <style lang="scss" scoped>
-.layout{
+.layout {
   width: 100%;
   height: 100%;
 
-  .header{
+  .header {
     height: 60px;
     width: 100%;
     display: flex;
     background-color: dodgerblue;
     z-index: 10;
 
-    .logo{
+    .logo {
       width: 200px;
       line-height: 60px;
       font-size: 30px;
     }
   }
 
-  .container{
+  .container {
     width: 100%;
     height: calc(100% - 60px);
     display: flex;
+    overflow-y: hidden;
 
-    .sider{
-      width: 200px;
+    .sider {
       height: 100%;
+      width: 200px;
       overflow-y: auto;
     }
 
-    .info{
+    .info {
       height: 100%;
       width: calc(100% - 200px);
     }
