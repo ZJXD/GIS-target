@@ -6,13 +6,13 @@
     </div>
     <div class="container">
       <div class="sider">
-        <el-menu :default-active="state.activeIndex" @open="handleOpen" @close="handleClose">
+        <el-menu :default-active="state.activePath" @open="handleOpen" @close="handleClose">
           <template v-for="menu in state.menuList" :key="menu.id">
-            <el-sub-menu v-if="menu.child && menu.child.length>0" :index="menu.id">
+            <el-sub-menu v-if="menu.child && menu.child.length>0" :index="menu.path">
               <template #title>{{ menu.name }}</template>
-              <el-menu-item v-for="subMenu in menu.child" :key="subMenu.id" :index="subMenu.id" @click="onMenuItemClick(subMenu.path,subMenu.id)">{{ subMenu.name }}</el-menu-item>
+              <el-menu-item v-for="subMenu in menu.child" :key="subMenu.id" :index="subMenu.path" @click="onMenuItemClick(subMenu.path,subMenu.id)">{{ subMenu.name }}</el-menu-item>
             </el-sub-menu>
-            <el-menu-item v-else :index="menu.id" @click="onMenuItemClick(menu.path || '',menu.id)">{{ menu.name }}</el-menu-item>
+            <el-menu-item v-else :index="menu.path" @click="onMenuItemClick(menu.path || '',menu.id)">{{ menu.name }}</el-menu-item>
           </template>
         </el-menu>
       </div>
@@ -24,7 +24,7 @@
 </template>
 
 <script lang="ts" setup>
-import { reactive } from 'vue'
+import { reactive, watch } from 'vue'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
@@ -51,8 +51,16 @@ const state = reactive({
     },
     { id: '2', name: 'Deck.GL' },
   ],
-  activeIndex: '301',
+  activePath: '/babylon/start',
 })
+
+watch(
+  () => router.currentRoute.value.path,
+  (newPath) => {
+    state.activePath = newPath
+  },
+  { immediate: true }
+)
 
 const handleOpen = (key: string, keyPath: string[]) => {
   console.log(key, keyPath)
@@ -64,7 +72,7 @@ const handleClose = (key: string, keyPath: string[]) => {
 
 const onMenuItemClick = (path: string, key: string) => {
   router.push(path)
-  state.activeIndex = key
+  state.activePath = key
 }
 </script>
 

@@ -24,7 +24,7 @@ export default {
       this.scene = new BABYLON.Scene(this.engine)
 
       // 添加可交互（拖动等）相机
-      this.camera = new BABYLON.ArcRotateCamera('camera',-Math.PI/2,Math.PI/2.5,3,new BABYLON.Vector3(0,0,0),this.scene)
+      this.camera = new BABYLON.ArcRotateCamera('camera',-Math.PI/2,Math.PI/4,8,new BABYLON.Vector3(0,0,0),this.scene)
       this.camera.attachControl(this.$refs.canvasEle,true)
 
       // 添加灯光、box
