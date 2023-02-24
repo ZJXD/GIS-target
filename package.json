@@ -10,8 +10,11 @@
   "dependencies": {
     "@antv/l7": "^2.7.14",
     "@antv/l7-maps": "^2.7.14",
-    "babylonjs": "^5.19.0",
+    "@babylonjs/core": "^5.0.0",
+    "@babylonjs/loaders": "^5.20.0",
+    "babylonjs-gltf2interface": "^5.0.0",
     "core-js": "^3.6.5",
+    "earcut": "^2.2.4",
     "element-plus": "^2.0.2",
     "lodash-es": "^4.17.21",
     "nprogress": "^0.2.0",

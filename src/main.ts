@@ -6,8 +6,10 @@ import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 import '@/assets/styles/index.scss'
 
-const app = createApp(App)
+import * as earcut from 'earcut'
+(window as any).earcut = earcut
 
+const app = createApp(App)
 
 async function setupAPP() {
   // 挂载路由

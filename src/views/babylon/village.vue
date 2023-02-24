@@ -1,11 +1,11 @@
 <template>
-  <div class="village">
+  <div class="village info-content">
     <canvas id="villageCanvas" ref="villageCanvas"></canvas>
   </div>
 </template>
 
 <script>
-import * as BABYLON from 'babylonjs'
+import * as BABYLON from '@babylonjs/core'
 
 export default {
   data(){
@@ -18,6 +18,9 @@ export default {
     this.engine = new BABYLON.Engine(this.$refs.villageCanvas,true,{preserverDrawingBuffer:true,stencli:true})
     this.createScene()
     this.engine.runRenderLoop(()=>{this.scene.render()})
+  },
+  beforeUnmount(){
+    this.scene && this.scene.dispose()
   },
   methods:{
     createScene(){
@@ -132,13 +135,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.village {
+canvas {
   width: 100%;
   height: 100%;
-
-  canvas {
-    width: 100%;
-    height: 100%;
-  }
 }
 </style>

@@ -25,7 +25,9 @@
     "skipLibCheck": true,
     "removeComments": true,
     "types": [
-      "webpack-env"
+      "webpack-env",
+      "babylonjs",
+      "babylonjs-loaders"
     ],
     "paths": {
       "@/*": [

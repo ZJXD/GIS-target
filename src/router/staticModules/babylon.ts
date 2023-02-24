@@ -21,6 +21,24 @@ const routes:Array<RouteRecordRaw> = [
         name:`${moduleName}-village`,
         component:()=>import(/* webpackChunckName: "babylon" */ '@/views/babylon/village.vue'),
         meta:{title:'babylon village'}
+      },
+      {
+        path:'car',
+        name:`${moduleName}-car`,
+        component:()=>import(/* webpackChunckName: "babylon" */ '@/views/babylon/car.vue'),
+        meta:{title:'babylon car'}
+      },
+      {
+        path:'animVillage',
+        name:`${moduleName}-animVillage`,
+        component:()=>import(/* webpackChunckName: "babylon" */ '@/views/babylon/animVillage.vue'),
+        meta:{title:'babylon animVillage'}
+      },
+      {
+        path:'environment',
+        name:`${moduleName}-environment`,
+        component:()=>import(/* webpackChunckName: "babylon" */ '@/views/babylon/environment.vue'),
+        meta:{title:'babylon environment'}
       }
     ]
   }

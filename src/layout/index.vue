@@ -38,6 +38,9 @@ const state = reactive({
       child: [
         { id: '301', name: 'start', path: '/babylon/start' },
         { id: '302', name: 'village', path: '/babylon/village' },
+        { id: '303', name: 'car', path: '/babylon/car' },
+        { id: '304', name: 'animVillage', path: '/babylon/animVillage' },
+        { id: '305', name: 'environment', path: '/babylon/environment' },
       ],
     },
     {
@@ -110,6 +113,11 @@ const onMenuItemClick = (path: string, key: string) => {
     .info {
       height: 100%;
       width: calc(100% - 200px);
+    }
+
+    :deep(.info-content) {
+      height: 100%;
+      width: 100%;
     }
   }
 }

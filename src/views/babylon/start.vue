@@ -1,11 +1,12 @@
 <template>
-  <div class="start">
+  <div class="start info-content">
     <canvas id="startCanvas" ref="canvasEle"></canvas>
   </div>
 </template>
 
 <script>
-import * as BABYLON  from 'babylonjs'
+import * as BABYLON from '@babylonjs/core'
+
 export default {
   data(){
     return{
@@ -18,6 +19,9 @@ export default {
     this.engine = new BABYLON.Engine(this.$refs.canvasEle,true,{preserverDrawingBuffer:true,stencli:true})
     this.createScene()
     this.engine.runRenderLoop(()=>{this.scene.render()})
+  },
+  beforeUnmount(){
+    this.scene && this.scene.dispose()
   },
   methods:{
     createScene(){
@@ -43,13 +47,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.start {
+#startCanvas {
   width: 100%;
   height: 100%;
-
-  #startCanvas {
-    width: 100%;
-    height: 100%;
-  }
 }
 </style>
